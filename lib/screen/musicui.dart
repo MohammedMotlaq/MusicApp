@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:music_app/screen/watchui.dart';
 
 import '../widgets/albumswidget.dart';
 import '../widgets/artistwidget.dart';
 import '../widgets/folderwidget.dart';
+import '../widgets/settingwidget.dart';
 import '../widgets/songswidget.dart';
 
 class MusicUI extends StatefulWidget {
@@ -31,24 +34,20 @@ class MusicScreen extends State<MusicUI> {
                   child: Container(
                     height: 40,
                     child: TextField(
+                      cursorColor: Colors.black,
                       textAlign: TextAlign.left,
                       style: const TextStyle(
-                        fontSize: 12,
+                        fontSize: 14,
                         color: Colors.black,
                       ),
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search),
+                        prefixIcon: Icon(Icons.search,color: Colors.grey.shade600,),
                         hintText: "Search songs, playlists, and artists",
-                        suffixIcon: Icon(Icons.mic),
+                        suffixIcon: Icon(Icons.mic,color: Colors.grey.shade600,),
                         fillColor: Colors.white,
                         filled: true,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            color: Colors.white,
-                            style: BorderStyle.none,
-                            ),
                         ),
                         contentPadding: EdgeInsets.only(top: 5),
                       ),
@@ -129,6 +128,7 @@ class MusicScreen extends State<MusicUI> {
                       title: Text("Settings",style: TextStyle(fontSize: 17),),
                       onTap: (){
                         Navigator.pop(context);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Settings()));
                       },
                     ),
                     const Divider(
@@ -227,32 +227,7 @@ class MusicScreen extends State<MusicUI> {
           color: Colors.white,
           child: Row(
             children: [
-              Stack(
-                children: [
-                  Container(
-                    width: 45,
-                    height: 45,
-                    //alignment: AlignmentDirectional.centerStart,
-                    margin: EdgeInsets.symmetric(horizontal: 15.0,vertical: 10),
-                    child:ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Image.asset('assets/images/black.jpg',fit: BoxFit.fill,),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Container(
-                      width: 32,
-                      height: 32,
-                      margin: EdgeInsets.only(left: 22),
-                      child:ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image.asset('assets/images/photo2.jpg',fit: BoxFit.fill,),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              Lottie.asset('assets/animations/playdisk.json',width: 60,height: 60),
               Container(
                 width: 220,
                 height: 45,
@@ -286,9 +261,15 @@ class MusicScreen extends State<MusicUI> {
           onTap: (i){
             index=i;
             if (i == 0){
-
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return MusicUI();
+                })
+              );
             }else if(i == 1){
-
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Watch_UI();
+              })
+              );
             }
             setState ((){
 

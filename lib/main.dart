@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/screen/musicui.dart';
 
+
 void main() {
   runApp(MusicApp());
 }
